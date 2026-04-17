@@ -32,7 +32,6 @@ def make_figure(region: str):
         dff = df_all.copy()
         title_region = "All regions"
 
-    # Aggregate by day so the chart is clean and “before/after” is obvious
     dff = dff.groupby("Date", as_index=False)["Sales"].sum()
 
     fig = px.line(
@@ -45,7 +44,6 @@ def make_figure(region: str):
 
     fig.update_traces(line={"width": 3})
 
-    # Vertical marker for the price increase date
     fig.add_vline(
         x=PRICE_INCREASE_DATE,
         line_width=2,
